@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/thousand/proliferate/issues"
   },
-  "homepage": "https://github.com/thousand/proliferate"
+  "homepage": "https://github.com/thousand/proliferate",
+  "engines": {
+    "node": ">=10.0.0"
+  }
 }
