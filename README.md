@@ -14,6 +14,8 @@ directories in addition to files.
 
 ## Usage
 
+Install the package via npm: `npm i -D proliferate`.
+
 ```js
 const Proliferation = require('proliferate');
 const path = require('path');
