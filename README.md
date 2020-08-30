@@ -16,17 +16,18 @@ directories in addition to files.
 
 ```js
 const Proliferation = require('proliferate');
+const path = require('path');
 
 // create a proliferation
 const p = new Proliferation({
-  count: 5,
+  count: 5000,
   fileName: 'file-%ID%.json',
-  filePath: 'data',
+  filePath: path.join(__dirname, 'data'),
   content: '{ "id": "%ID%" }'
 });
 
 // make it rain
-await p.write();
+p.write(); // write is done asynchronously
 ```
 
 ## Usage
