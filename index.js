@@ -20,8 +20,8 @@ class FileModel {
 
     for ( let i = 0; i < this.count; i++ ) {
       const currId = i.toString().padStart( this._idLen, '0' );
-      const currFile = this.fileName.replace( '%ID%', currId );
-      const currContent = this.content.replace( '%ID%', currId );
+      const currFile = this.fileName.replace( ID_TOKEN, currId );
+      const currContent = this.content.replace( ID_TOKEN, currId );
       const fullPath = path.join( this.filePath, currFile );
       await fs.writeFile( fullPath, currContent );
     }

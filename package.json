@@ -1,0 +1,18 @@
+{
+  "name": "proliferate",
+  "version": "0.0.1",
+  "description": "Simple package to create lots of files. Envisioned for creating performance testing fixtures for web frameworks.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thousand/proliferate.git"
+  },
+  "author": "Bryan Levay <bryan@bryanlevay.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thousand/proliferate/issues"
+  },
+  "homepage": "https://github.com/thousand/proliferate"
+}
