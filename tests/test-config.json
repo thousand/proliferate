@@ -1,0 +1,17 @@
+{
+  "count": 1000,
+
+  "files": [
+    {
+      "fileName": "component-%ID%.hbs",
+      "filePath": "addon/templates/components",
+      "content": "<div block:scope>%ID%</div>"
+    },
+    {
+      "fileName": "component-%ID%.block.scss",
+      "filePath": "addon/styles/components",
+      "content": ":scope { content: '%ID%' }"
+    }
+  ],
+
+}

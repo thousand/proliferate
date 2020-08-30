@@ -1,10 +1,9 @@
 const fs = require( 'fs/promises' );
 const path = require( 'path' );
-const files = require( './component-files.json' );
 
 const ID_TOKEN = '%ID%';
 
-class FileModel {
+module.exports = class Proliferation {
   count = 1;
   fileName = '%ID%';
   filePath = 'output';
@@ -15,7 +14,7 @@ class FileModel {
     this._idLen = this.count.toString().length;
   }
 
-  async dump () {
+  async write () {
     await fs.mkdir( this.filePath, { recursive: true } );
 
     for ( let i = 0; i < this.count; i++ ) {
@@ -27,11 +26,3 @@ class FileModel {
     }
   }
 }
-
-files.files.forEach( async ( f ) => {
-  const fm = new FileModel( { count: files.count, ...f } );
-  await fm.dump();
-} );
-
-
-

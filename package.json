@@ -4,6 +4,7 @@
   "description": "Simple package to create lots of files. Envisioned for creating performance testing fixtures for web frameworks.",
   "main": "index.js",
   "scripts": {
+    "test": "node tests/test.js"
   },
   "repository": {
     "type": "git",
