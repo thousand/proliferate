@@ -1,0 +1,12 @@
+{
+  "count": 1000,
+
+  "files": [
+    {
+      "fileName": "component-%ID%.hbs",
+      "filePath": "addon/components",
+      "content": "<div block:scope>%ID%</div>"
+    }
+  ]
+
+}
