@@ -1,20 +1,27 @@
 const fs = require( 'fs/promises' );
 const path = require( 'path' );
 const Proliferation = require( '../index' );
+const testConfig = require( './test-config' );
 
-const OUTPUT_PATH = path.join( __dirname, 'data' );
+const OUTPUT_PATH = path.join( __dirname, 'fixture' );
 
 async function setup () {
   // create a proliferation
-  const p = new Proliferation( {
-    count: 15,
-    fileName: 'file-%ID%.json',
-    filePath: OUTPUT_PATH,
-    content: '{ "id": "%ID%" }',
-  } );
+  const p = new Proliferation(
+    Object.assign(
+      {},
+      testConfig,
+    ),
+  );
 
   // make it rain
-  await p.write();
+  try {
+    await p.write();
+  }
+  catch ( e ) {
+    debugger;
+    throw e;
+  }
 }
 
 async function testFilePaths () {
@@ -48,14 +55,14 @@ async function testFileContents () {
 }
 
 async function cleanup () {
-  fs.rmdir( OUTPUT_PATH, { recursive: true } );
+  await fs.rmdir( OUTPUT_PATH, { recursive: true } );
 }
 
 async function run () {
   await setup();
-  await testFilePaths();
-  await testFileContents();
-  await cleanup();
+  // await testFilePaths();
+  // await testFileContents();
+  // await cleanup();
 }
 
 run();

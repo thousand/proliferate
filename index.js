@@ -1,28 +1,88 @@
 const fs = require( 'fs/promises' );
 const path = require( 'path' );
+const FileProliferation = require( './lib/file-proliferation' );
+const Consumption = require( './lib/consumption' );
+
+/**
+ * @typedef FileProliferationConfig
+ * @property fileName {string}
+ * @property filePath {string}
+ * @property content {string|function}
+ */
+
+/**
+ * @typedef ConsumptionConfig
+ * @property fileName {string}
+ * @property filePath {string}
+ * @property content {string|function}
+ * @property prefix {string}
+ * @property suffix {string}
+ */
+
+/**
+ * @typedef ProliferationConfig
+ * @property count {number}
+ * @property basePath {string}
+ * @property proliferations {FileProliferationConfig[]}
+ * @property consumptions {ConsumptionConfig[]}
+ */
+
+const DEFAULT = {
+  count: 1,
+  base: '',
+  proliferations: [],
+  consumptions: [],
+};
+
 
 const ID_TOKEN = '%ID%';
 
 module.exports = class Proliferation {
-  count = 1;
-  fileName = '%ID%';
-  filePath = 'output';
-  content = '%ID%';
+  /**
+   * @type {ProliferationConfig}
+   */
+  config = {};
 
   constructor ( config ) {
-    Object.assign( this, config );
-    this._idLen = this.count.toString().length;
+    Object.assign( this.config, DEFAULT, config );
   }
 
   async write () {
-    await fs.mkdir( this.filePath, { recursive: true } );
+    const { config } = this;
 
-    for ( let i = 0; i < this.count; i++ ) {
-      const currId = i.toString().padStart( this._idLen, '0' );
-      const currFile = this.fileName.replace( ID_TOKEN, currId );
-      const currContent = this.content.replace( ID_TOKEN, currId );
-      const fullPath = path.join( this.filePath, currFile );
-      await fs.writeFile( fullPath, currContent );
+    this._proliferations = config.proliferations.map( ( p ) => {
+      return new FileProliferation( Object.assign(
+        p,
+        {
+          count: config.count,
+          filePath: path.join( config.basePath, p.filePath ),
+        },
+      ) );
+    } );
+
+    this._consumptions = config.consumptions.map( ( c ) => {
+      return new Consumption( Object.assign(
+        c,
+        {
+          count: config.count,
+          filePath: path.join( config.basePath, c.filePath ),
+        },
+      ) );
+    } );
+
+    const runs = [ ...this._proliferations, ...this._consumptions ];
+    // const running = runs.map( ( r ) => r.write() );
+    //
+    // try {
+    //   await Promise.all( running );
+    // } catch (e) {
+    //   throw e;
+    // }
+
+    for ( let i = 0; i < runs.length; i++ ) {
+      debugger;
+      await runs[i].write();
     }
+
   }
-}
+};

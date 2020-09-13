@@ -25,7 +25,7 @@ jspm_packages/
 *.tgz
 
 # Test file output
-tests/data
+tests/fixture
 
 # editor stuff
 .idea
