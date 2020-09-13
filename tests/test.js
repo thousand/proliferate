@@ -19,7 +19,6 @@ async function setup () {
     await p.write();
   }
   catch ( e ) {
-    debugger;
     throw e;
   }
 }

@@ -71,18 +71,12 @@ module.exports = class Proliferation {
     } );
 
     const runs = [ ...this._proliferations, ...this._consumptions ];
-    // const running = runs.map( ( r ) => r.write() );
-    //
-    // try {
-    //   await Promise.all( running );
-    // } catch (e) {
-    //   throw e;
-    // }
+    const running = runs.map( ( r ) => r.write() );
 
-    for ( let i = 0; i < runs.length; i++ ) {
-      debugger;
-      await runs[i].write();
+    try {
+      await Promise.all( running );
+    } catch (e) {
+      throw e;
     }
-
   }
 };
