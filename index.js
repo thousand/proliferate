@@ -35,8 +35,6 @@ const DEFAULT = {
 };
 
 
-const ID_TOKEN = '%ID%';
-
 module.exports = class Proliferation {
   /**
    * @type {ProliferationConfig}
