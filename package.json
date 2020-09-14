@@ -1,6 +1,6 @@
 {
   "name": "proliferate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple package to create lots of files. Envisioned for creating performance testing fixtures for web frameworks.",
   "main": "index.js",
   "scripts": {
